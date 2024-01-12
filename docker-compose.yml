@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  house_new:
+    build: ./
+    command: app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  db:
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: "test_db1"
+      POSTGRES_USER: "house_new"
+      POSTGRES_PASSWORD: "123"
+    ports:
+      - "5436:5432"
